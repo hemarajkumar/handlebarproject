@@ -1,0 +1,82 @@
+//
+// Assessment Project
+// --------------------------------------------------
+
+.basketPage {
+    h2 {
+        .fontsizerule1 (@size: 20px, @weight: bold, @color:#ccc);
+    }
+   .itemList {
+       margin-bottom: 10px;
+       .cartItems {
+           min-height: 100px;
+           margin-bottom: 10px;
+           .rows{
+                padding: 10px 0px;
+                float:left;
+                 border: 2px solid #928f91;
+           background-color: #f6f2f5;
+           margin-bottom: 10px;
+                .thumb {
+                    float: left;
+                }
+                .details {
+                    li {
+                        margin-bottom:5px;
+                         &.name a{
+                            .fontsizerule1 (@size: 14px, @weight: bold, @color:#000);
+                            text-decoration: none;
+                        }
+                        span.code {
+                            .fontsizerule1 (@size: 14px, @weight: bold, @color:#000);
+                        }
+                    }
+                }
+                .productTotal {
+                    text-align: right;
+                     font-weight: bold;
+                     font-size:16px;
+                }
+              
+                    
+           }
+        
+       }
+       
+        .voucherCode {
+           min-height: 100px;
+           border: 1px solid #999;
+           border-radius: 5px;
+           padding: 10px;
+           .form-control {
+               width:160px;
+               margin: 10px 10px 10px 0px;
+                display: inline-block;
+            }
+            .form-group {margin-bottom: 0px;}
+            .vouchererror {
+                color: #ec1120;
+                float:left;
+                margin:0px;
+                font-size: 12px;
+            }
+       }
+   }
+   
+   .priceDetailsFrame {
+       h2 {margin-left: 12px;}
+       .priceDetails {
+           .rows{
+               .fontsizerule1 (@size: 16px, @weight: normal, @color:#000);
+               margin-bottom: 10px;
+               float: left;
+               display: block;
+               &.discount {color:#ec1120;}
+           }
+           margin: 0px 0px 10px 0px;
+           background-color: #f2f0fc;
+           border: 1px solid #000;
+           .amount {text-align: right;}
+       }
+   }
+}

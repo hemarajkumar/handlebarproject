@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]> <html class="no-js lt-ie10 lt-ie9 ie8" lang="en_GB"> <![endif]-->
+<!--[if IE 9 ]> <html class="no-js lt-ie10 ie9" lang="en_GB"> <![endif]-->
+<!--[if (gte IE 10)|!(IE)]><!--> <html lang="en_GB" class="no-js"> <!--<![endif]-->
+<head>
+	<title>GB | Homepage</title>
+	<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8"/>
+	<meta HTTP-EQUIV="X-UA-Compatible" CONTENT="IE=edge,chrome=1"/>
+	<meta name="viewport" CONTENT="width=device-width, height=device-height, initial-scale=1, maximum-scale=1"/>
+	<meta name="robots" CONTENT="index,follow"/>
+	<link REL="shortcut icon" TYPE="image/x-icon" MEDIA="all" HREF="images/favicon.ico" />
+	<!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="web/webroot/_ui/css/common/bootstrap.css?v=1">
+	<link rel="stylesheet" type="text/css" href="web/webroot/_ui/css/common/bootstrap.min.css?v=1">
+	<link rel="stylesheet" type="text/css" href="web/webroot/_ui/css/common/bootstrap-theme.css?v=1">
+	<link rel="stylesheet" type="text/css" href="web/webroot/_ui/css/common/bootstrap-theme.min.css?v=1">
+	<link rel="stylesheet" type="text/css" href="web/webroot/_ui/css/common/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="web/webroot/_ui/css/theme/main.css?v=1">
+	
+	<script TYPE="text/javascript" SRC="web/webroot/_ui/js/common/jquery-1.11.3.min.js"></script>
+	<script TYPE="text/javascript" SRC="web/webroot/_ui/js/common/jquery-ui-1.8.18.min.js"></script>
+	<script TYPE="text/javascript" SRC="web/webroot/_ui/js/common/bootstrap.js"></script>
+	<script TYPE="text/javascript" SRC="web/webroot/_ui/js/common/bootstrap.min.js"></script>
+	<script TYPE="text/javascript" SRC="web/webroot/_ui/js/common/underscore.js"></script>
+	
+	<script type="text/javascript">var ACC = { config: {} };</script>
+	
+	<script TYPE="text/javascript" SRC="web/webroot/_ui/js/theme/scripts.js"></script>
+	<script TYPE="text/javascript" SRC="web/webroot/_ui/js/theme/acc.productlisting.js"></script>
+	<script TYPE="text/javascript" SRC="web/webroot/_ui/js/theme/acc.productUpdate.js"></script>
+	<script TYPE="text/javascript" SRC="web/webroot/_ui/js/theme/acc.menu.js"></script>
+	<script TYPE="text/javascript" SRC="web/webroot/_ui/js/theme/acc.cartpage.js"></script>
+</head>
+
+<script>
+	$(document).ready(function (){
+		$(".contentDiv").hide();
+		$("#HomePage").fadeIn();
+	});
+</script>
+
+<body class="homepage">
+<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+  <div class="container nopad headerNav">
+	<!-- div class="col-xs-12 margin20top assesmentHeading nopad">
+		<div class="logo">
+			<a href="javascript:void(0);"><img src="images/logo.png"/></a>
+		</div>
+		<div class="name">
+				<span class="bold marginbottom5">Assessment By<span>
+				<span>Rajkumar Manoharan</span>
+		</div>
+	</div -->
+   <div class="navbar-header nomargin">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="javascript:void(0);" id="showAll" class="navbar-brand">All Products</a>
+    </div>
+   <nav id="bs-navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+      <ul class="nav navbar-nav" id="menuBlock"></ul>
+    </nav>
+	 <div class="miniCart" style="float:right;">
+		<a href="javascript:void(0);" class="minicartbg">
+			<div class="fa fa-shopping-cart"></div>
+	       £<span id="miniBasketPrice" class="price">0.00</span><span class="chekcoutBasketQty">(<span class="count">0</span>)</span>
+		</a>
+	</div>
+  </div>
+  
+  <script type="text/template" id='menuList'>
+	<%
+	_.each(jsonData, function(val, idx) {
+	categoryList.push(val.id);
+	%>
+	<li><a href="javascript:void(0);" class="category" data-category="<%- val.id %>"><%- val.title %></a></li>
+	<%});%>
+  </script>
+  
+  
+    <script type="text/template" id='loadProducts'>
+	<% _.each(jsonData, function(val, idx) { %>
+		<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 product pad5">
+			<div class="col-xs-12 product-data nopad">
+				<div class="thumb col-lg-4 col-md-4 col-sm-3 col-xs-3"><a href="#"><img src="<%- val.image %>"/></a></div>
+				<div class="details col-lg-8 col-md-8 col-sm-9 col-xs-9 nopad">
+					<ul class="nopad">
+						<li class="name"><a href="#"><%- val.name %></a></li>
+						<li>Product Code:<span class="code">&nbsp;<%- val.id %></span></li>
+						<li class="price"> <% if (typeof(val.was) != "undefined") {%> <span class="was">£<%- val.was %></span> <% } %> <span class="now">£<%- val.price %></span></li>
+						<li class="available">Available products: <span class="availableQty"><%- val.quantity %></span></li>
+						<li class="inputs">
+							<div class="form-group">
+								<% if (val.quantity > 0) {%>
+									<input type="text" class="form-control qty" name="qty" onkeydown="return IsNumeric(this, event);"></input>
+									<button id="<%- val.id %>" type="button" class="btn btn-primary addtobasket" onclick="ACC.productupdate.checkQuantity(this.id);" data-productid="<%- val.id %>" data-availableproducts="<%- val.quantity %>" data-basketadded="<%- val.basketadded %>">Add to Basket</button>
+									<span class="col-xs-12 nopad errorMsg" style="display: none;"></span>
+								<% } %>
+								<% if (val.quantity == 0) {%>
+									<span class="outofstock">Out of stock</span>
+								<% } %>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	<%});%>
+  </script>
+  
+  
+  
+    <script type="text/template" id='loadAllProducts'>
+	<% _.each(allProductJsonObj, function(val, idx) { %>
+		<div class="col-xs-12 col-lg-3 col-md-4 col-sm-6 product pad5">
+			<div class="col-xs-12 product-data nopad">
+				<div class="thumb col-lg-4 col-md-4 col-sm-3 col-xs-3"><a href="#"><img src="<%- val.image %>"/></a></div>
+				<div class="details col-lg-8 col-md-8 col-sm-9 col-xs-9 nopad">
+					<ul class="nopad">
+						<li class="name"><a href="#"><%- val.name %></a></li>
+						<li class="code"><a href="#"><%- val.id %></a></li>
+						<li class="price"> <% if (typeof(val.was) != "undefined") {%> <span class="was">£<%- val.was %></span> <% } %> <span class="now">£<%- val.price %></span></li>
+						<li class="available">Available products: <span class="availableQty"><%- val.quantity %></span></li>
+						<li class="inputs">
+							<div class="form-group">
+								<% if (val.quantity > 0) {%>
+								<input type="text" class="form-control qty" name="qty" onkeydown="return IsNumeric(this, event);"></input>
+								<button id="<%- val.id %>" type="button" class="btn btn-primary addtobasket" onclick="ACC.productupdate.checkQuantity(this.id);" data-productid="<%- val.id %>" data-availableproducts="<%- val.quantity %>" data-basketadded="<%- val.basketadded %>">Add to Basket</button>
+								<span class="col-xs-12 nopad errorMsg" style="display: none;"></span>
+								<% } %>
+								<% if (val.quantity == 0) {%>
+									<span class="outofstock">Out of stock</span>
+								<% } %>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	<%});%>
+  </script>
+  
+  
+   <script type="text/template" id='loadCartPage'>	
+	<% _.each(allProductJsonObj, function(val, idx) { %>
+		<div class="col-xs-12 rows" data-productid="<%- val.id %>" data-quantity="<%- val.basketadded %>">
+			<div class="thumb col-lg-2 col-md-3 col-sm-2 col-xs-12">
+				<a href="#"><img src="<%- val.image %>"></a>
+			</div>
+			<div class="basketDetails col-lg-10 col-md-9 col-sm-10 col-xs-12">
+				<div class="details col-lg-9 col-md-9 col-sm-8 col-xs-12 nopad">
+					<ul class="nopad">
+						<li class="name"><a href="javascript:void(0);"><%- val.name %></a></li>
+						<li>Product Code:<span class="code">&nbsp;<%-  val.id %></span></li>
+						<li>Quantity:<span class="code">&nbsp;</span><%- val.basketadded %></li>
+						<li>Product price:&nbsp;<span class="code">£&nbsp;<%- val.price %></span></li>
+					</ul>
+				</div>
+				<div class="productTotal col-lg-3 right col-md-3 col-sm-4 col-xs-12">
+					Total:&nbsp;&nbsp;£&nbsp;<span class="total"><%- val.productPrice %></span>
+				</div>
+			</div>
+		</div>
+	<%});%>
+  </script>
+</header>
+
+<div class="contentDiv" id="HomePage">
+	<div class="col-xs-12 nopad carousel">
+		Home page Carousel
+	</div>
+</div>
+
+<div class="contentDiv" id="ProductListing">
+	<div class="container-fluid">
+		<div class="row margin10top productListingPage">
+			<div class="col-xs-12 col-sm-12 col-md-3">
+				<div class="col-xs-12 facetNavigation nopad">
+					<h2 class="nomargin">Filters</h2>
+					<div class="facet-blockwrap">
+						<div class="facet nomargin">
+							Filter options....
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right col-xs-12 col-md-9">
+				<h2 class="categoryTitle"></h2>
+				<div class="paginationBar top clearfix">
+					<span class="title">Pagination options...</span>
+				</div>
+				<div id="ProductLists" class="productList clearfix col-xs-12"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<div class="contentDiv" id="cartPage">
+	<div class="container-fluid nopad">
+		<div class="basketPage nopad col-xs-12">
+			<div class="col-xs-12 col-lg-8 col-md-8 col-sm-8 itemList">
+				<h2 class="nopad-left">Basket</h2>
+				<div id="basketProducts" class="col-xs-12 nopad cartItems">
+				</div>
+				<div class="col-xs-12 nopad">
+					<div class="col-lg-5 right nopad">
+						<div class="col-xs-12 voucherCode">
+							<p class="nomargin bold">Voucher code</p>
+							<div class="form-group">
+								<input type="text" class="form-control" id="voucherid" placeholder="Please enter voucher" />
+								<input type="button" id="applyVoucher" class="btn btn-primary" value="Apply" data-usedvoucher=""></input>
+							</div>
+							<span class="vouchererror"></span>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div class="col-xs-12 col-lg-4 col-md-4 col-sm-4 right priceDetailsFrame">
+				<div class="col-xs-12 nopad">
+					<h2>Price Details</h2>
+					<div class="col-xs-12 priceDetails pad10topbtm">
+						<div class="rows col-lg-8 col-xs-12 nopad clear">
+							<div class="title col-lg-8 left nopad">
+								<span>Subtotal<br/>(exc. savings)</span>
+							</div>
+							<div class="amount col-lg-3 right nopad">
+								£<span id="subtotal">0.00</span>
+							</div>
+						</div>	
+						<div class="rows col-lg-8 col-xs-12 nopad discount clear">
+							<div class="title col-lg-8 left nopad">
+								<span>Discount</span>
+							</div>
+							<div class="amount col-lg-3 right nopad">
+								£<span id="discountPrice">0.00</span>
+							</div>
+						</div>
+						<div class="rows col-lg-8 col-xs-12 nopad bold clear">						
+							<div class="title col-lg-8 left nopad">
+								<span>Net Total</span>
+							</div>
+							<div class="amount col-lg-3 right nopad">
+								£<span id="nettotal">0.00</span>
+							</div>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="productDatas"></div>
+</body>
+</html>
