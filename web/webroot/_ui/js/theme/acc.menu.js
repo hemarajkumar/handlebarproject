@@ -11,43 +11,32 @@ ACC.Menu = {
 		$("#menuBlock").html(_.template(template));
 	},
 	loadEvents: function (){
-		$(".category").click(function (e){
-			$('.categoryTitle').html($(this).html());
-			var thisObj = $(this);
-			var catid = $(thisObj).data('category');
-			$(".contentDiv").hide();
-			$("#ProductListing").fadeIn();
-			$('#menuBlock li').each (function(e){
-				$(this).find('a.category').removeClass("active");
-			});
-			$(thisObj).addClass("active");
-			ACC.productListing.loadModule(catid);
-			$(".contentDiv").hide();
-			$("#ProductListing").fadeIn();
-		});
+
+
+
+
+
 		$('.logo').click(function (e){
 			$(".contentDiv").hide();
 			$("#HomePage").fadeIn();
 		});
-		
-		$("#showAll").click(function(e){
-			$('.categoryTitle').html($(this).html());
+
+
+		$(".js-category").click(function (e){
 			e.preventDefault();
-			ACC.productListing.loadAllProducts();
+			var thisObj = $(this);
+			var catid = $(thisObj).data('category');
+			$('#menuBlock li').each (function(e){
+					$(this).find('a.js-category').removeClass("active");
+			});
+			if (catid != 'all'){
+				$(thisObj).addClass("active");
+		  }
+			ACC.productListing.loadPlpProducts(catid);
 			$(".contentDiv").hide();
-			$("#ProductListing").fadeIn();
+			$(".js-productListing").fadeIn();
 		});
-		
-		$(".minicartbg").click(function(e){
-			e.preventDefault();
-			var count = parseInt($(".count").html());
-			if (count > 0){
-				ACC.cartPage.loadCartPage();
-				$(".contentDiv").hide();
-				$("#cartPage").fadeIn();
-			}
-		});
-		
+
 	}
 };
 

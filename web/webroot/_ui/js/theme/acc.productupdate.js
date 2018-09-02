@@ -1,3 +1,4 @@
+/*
 ACC.productupdate = {
 	bindAll: function () {
 	//	this.events();
@@ -12,21 +13,21 @@ ACC.productupdate = {
 		var productsAvailable = $(btnObj).data('availableproducts') - $(btnObj).data('basketadded');
 		if (qtyValue == ''){
 			$(parentObj).find('span.errorMsg').html('please enter quantity').css('display','block');
-			var timeoutid = setTimeout(function() {$(parentObj).find('span.errorMsg').fadeOut();}, 5000); 
+			var timeoutid = setTimeout(function() {$(parentObj).find('span.errorMsg').fadeOut();}, 5000);
 		}
 		else {
 			if (qtyValue > productsAvailable){
 				$(parentObj).find('span.errorMsg').html('Your requested quantity is not available').css('display','block');
-				var timeoutid = setTimeout(function() {$(parentObj).find('span.errorMsg').fadeOut();}, 5000); 
+				var timeoutid = setTimeout(function() {$(parentObj).find('span.errorMsg').fadeOut();}, 5000);
 			}
 			else {
 				$(parentObj).find('span.errorMsg').html('').css('display','none');
 				this.updateQuantity (id, qtyValue);
 				this.updatePrice (id, qtyValue);
-			}	
+			}
 		}
 	},
-	
+
 	updateQuantity: function(productId, quantity){
 		var qty = parseInt(quantity);
 		var array = productId.split("_");
@@ -49,9 +50,9 @@ ACC.productupdate = {
 				}
 			});
 		});
-		
+
 	},
-	
+
 	updatePrice: function(productId, quantity){
 		var qty = parseInt(quantity);
 		var array = productId.split("_");
@@ -68,7 +69,7 @@ ACC.productupdate = {
 					//newPrice = parseFloat(newPrice.replace( /,/g,''));
 					$("#miniBasketPrice").html(newPrice.toFixed(2));
 				}
-			}); 
+			});
 		});
 	}
 };
@@ -76,3 +77,5 @@ ACC.productupdate = {
 $(document).ready(function () {
 	ACC.productupdate.bindAll();
 });
+
+*/

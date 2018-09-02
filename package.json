@@ -4,6 +4,7 @@
   "description": "Hi,",
   "main": "index.js",
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
     "grunt": "0.4.5",
     "grunt-concat-sourcemap": "^0.4.3",
     "grunt-contrib-less": "1.0.1",

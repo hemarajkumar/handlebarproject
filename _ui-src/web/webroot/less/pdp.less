@@ -1,0 +1,50 @@
+//
+// Assessment Project
+// --------------------------------------------------
+
+.productdetails {
+  &__productImageContainer {
+    float: left;
+    max-width: 700px;
+    max-height: 490px;
+    min-width: initial;
+    min-height: initial;
+    text-align: center;
+    position: relative;
+    border: 2px solid #000;
+    @media only screen and (min-width: 1400px) {
+      min-width: 700px;
+      min-height: 490px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+      max-height: 490px;
+
+    }
+  }
+  .pdp-productinfo {
+    &__desc {
+      width: 100%;
+      margin: 10px 0 20px 0;;
+      float: left;
+    }
+    &__now {
+      margin: 0 20px 0 0;
+    }
+    &__was {
+      i {
+        text-decoration: line-through;
+      }
+    }
+    &__addBasket {
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      margin-top: 20px;
+      float: left;
+    }
+
+  }
+}

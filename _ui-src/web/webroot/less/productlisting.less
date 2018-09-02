@@ -2,7 +2,7 @@
 // Assessment Project
 // --------------------------------------------------
 
-.productListingPage {
+.PLP-page {
     h2{
         margin: 0px;
         .fontsizerule1 (@size: 22px, @weight: bold, @color:#000);
@@ -11,7 +11,7 @@
         .facet {
             border: 1px solid #999999;
             min-height: 200px;
-        } 
+        }
     }
     .paginationBar {
         margin: 10px 0px;
@@ -46,7 +46,7 @@
                         span.code {font-weight: bold; margin-bottom:5px;}
                         &.name {
                             .fontsizerule1 (@size: 14px, @weight: bold, @color:#000);
-                            margin-bottom: 5px; 
+                            margin-bottom: 5px;
                         }
                         a {
                             text-decaration: none;
@@ -73,8 +73,44 @@
                                 }
                         }
                     }
-                 }  
+                 }
             }
-        }  
+        }
     }
+}
+
+.plp-products {
+  float: left;
+  margin-top: 20px;
+  &__name {
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+  &__product {
+    float: left;
+    width: 320px;
+    height: auto;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  &__img-container {
+    float: left;
+    width: 320px;
+    max-height: 320px;
+  }
+  &__img {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+}
+
+.roundelProduct {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  width: 80px;
+  height: 80px;
 }

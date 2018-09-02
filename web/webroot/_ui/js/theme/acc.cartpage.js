@@ -1,3 +1,4 @@
+/*
 ACC.cartPage = {
 	bindAll: function () {
 		this.events();
@@ -23,27 +24,27 @@ ACC.cartPage = {
 				if (voucherExists == false) {
 					$('.vouchererror').html('Voucher not exists');
 					$('.vouchererror').fadeIn();
-					setTimeout(function() {$('.vouchererror').fadeOut();}, 5000); 
+					setTimeout(function() {$('.vouchererror').fadeOut();}, 5000);
 				}
 			} else {
 				$('.vouchererror').html('Voucher already used. Please remove existing voucher');
 				$('.vouchererror').fadeIn();
-				setTimeout(function() {$('.vouchererror').fadeOut();}, 5000); 
+				setTimeout(function() {$('.vouchererror').fadeOut();}, 5000);
 			}
-		});	
+		});
 	},
-	
+
 	validateVoucher: function(obj){
 		var baskettotal = $("#nettotal").html();
 		baskettotal = parseFloat(baskettotal.replace( /,/g,''));
 		var min = obj.minimumvalue;
 		min = parseFloat(min.replace( /,/g,''));
 		var discount = obj.value;
-		discount = parseFloat(discount.replace( /,/g,''));	
+		discount = parseFloat(discount.replace( /,/g,''));
 		if (obj.used == "yes"){
 			$('.vouchererror').html('This voucher already applied');
 			$('.vouchererror').fadeIn();
-			setTimeout(function() {$('.vouchererror').fadeOut();}, 5000); 
+			setTimeout(function() {$('.vouchererror').fadeOut();}, 5000);
 		} else {
 			if (baskettotal >= min){
 				baskettotal = baskettotal - discount;
@@ -54,16 +55,16 @@ ACC.cartPage = {
 				$("#applyVoucher").data('usedvoucher', obj.code);
 				$('.vouchererror').html('Voucher updated');
 				$('.vouchererror').fadeIn();
-				setTimeout(function() {$('.vouchererror').fadeOut();}, 5000); 
+				setTimeout(function() {$('.vouchererror').fadeOut();}, 5000);
 			}
 			else {
 				$('.vouchererror').html(obj.vouchererror);
 				$('.vouchererror').fadeIn();
-				setTimeout(function() {$('.vouchererror').fadeOut();}, 5000); 
+				setTimeout(function() {$('.vouchererror').fadeOut();}, 5000);
 			}
 		}
 	},
-	
+
 	loadCartPage: function() {
 		var num = 0;
 		allProductJsonObj = [];
@@ -89,7 +90,7 @@ ACC.cartPage = {
 		$("#basketProducts").html(_.template(template));
 		this.subTotal(priceArray);
 	},
-	
+
 	subTotal(obj){
 		var totalprice = 0;
 		for (var i = 0; i < obj.length; i++){
@@ -105,3 +106,4 @@ ACC.cartPage = {
 $(document).ready(function () {
 	ACC.cartPage.bindAll();
 });
+*/
